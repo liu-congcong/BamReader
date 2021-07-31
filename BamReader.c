@@ -53,11 +53,13 @@ int read_header(gzFile open_file, SEQUENCE **sequence_list, int32_t *sequences)
     char *header = malloc(sizeof(char) * header_length);
     assert(header);
     gzread(open_file, header, sizeof(char) * header_length); /* @ lines. */
+    /*
     if (!is_sorted_file(header))
     {
         printf("BAM file needs be sorted.\n");
         exit(EXIT_FAILURE);
     }
+    */
     free(header); /* ... */
     gzread(open_file, sequences, sizeof(int32_t));
     *sequence_list = malloc(sizeof(SEQUENCE) * (*sequences));
